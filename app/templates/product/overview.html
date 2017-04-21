@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block body %}
+<section class="dashboard">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="column">
+        <div class="col-md-12">
+          <center>
+            <h1>Products Available in Store</h1>
+            <div class="available_stores">
+                {% if not current_user.is_authenticated %}
+                <a href="{{ url_for('auth.login') }}" class="btn btn-custom" role="button">LOG IN</a>
+                {% else %}
+                <a href="{{ url_for('product.product') }}" class="btn btn-custom" role="button">ADD NEW PRODUCT</a>
+                {% endif %}
+               {% if all_products == 0 %}
+               <div class="return_number">
+                 <p>No available products</p>
+               </div>
+               {% else %}
+               <div class="return_number">
+                 <p>Number of Products: {{ all_products }}</p>
+               </div>
+               {% endif %}
+               <div class="store_list">
+                 <div class="row">
+                   <div class="col-sm-3 col-sm-offset-3">
+                     <span style="font-weight:bolder; font-size: 13pt; text-decoration: underline;">NAME</span>
+                   </div>
+                   <div class="col-sm-3">
+                     <span style="font-weight:bolder; font-size: 13pt; text-decoration: underline;">DESCRIPTION</span>
+                   </div>
+                 </div>
+               {% for product in display_products %}
+               <div class="row">
+                <div class="col-sm-3 col-sm-offset-3">
+                   <div class="prod_name">
+                    {{ product.product_name }}</div>
+                </div>
+                <div class="col-sm-3">
+                  <div class="desc">
+                    {{ product.product_description }}
+                  </div>
+                </div>
+              </div>
+                {% endfor %}
+            </div>
+          </center>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

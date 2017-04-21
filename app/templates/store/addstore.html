@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+
+{% block body %}
+
+  <div class="col-lg-4 col-md-offset-4">
+    <div class="page-header text-center">
+          <h1>New Store</h1>
+    </div>
+    <div class= "jumbotron">
+      <form method=post>
+        {{ form.hidden_tag() }}
+        <dl>
+           <dd>Name: {{ form.store_name(class_="u-full-width", placeholder="Store Name", maxlength=70)}}
+           <dd>Description: {{ form.store_desc(class_="u-full-width", placeholder="Store Description") }}
+           <dt>{{ form.submit }}
+         </dl>
+       </form>
+    </div>
+  </div>
+
+{% endblock %}
